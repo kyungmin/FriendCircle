@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
 
     if @user
+      login_user(@user)
       redirect_to @user
     else
       flash.now[:errors] = ["Username or password invalid"]

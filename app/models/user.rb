@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
 
   after_initialize { self.session_token ||= self.class.generate_session_token }
 
+  has_many(
+  :circles,
+  :class_name => 'Circle',
+  :primary_key => :id,
+  :foreign_key => :user_id,
+  :dependent => :destroy
+  )
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
