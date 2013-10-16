@@ -1,0 +1,32 @@
+<h1>New post</h1>
+<form action="<%= posts_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<%= render 'shared/errors' %>
+
+	<label for="post_title">Title:</label>
+	<input type="text" id="post_title" name="post[title]" value="<%= @post.title %>">
+	<br>
+
+	<label for="post_body">Body:</label>
+	<textarea id="post_body" name="post[body]"><%= @post.title %></textarea>
+	<br>
+	<br>
+	<label for="post_circle">Circles:</label>
+	<br>
+	<% current_user.circles.each do |circle| %>
+	<input type="checkbox" id="post_circle_<%= circle.id %>" name="post[circle_ids][]"
+					value="<%= circle.id %>"><%= circle.name %><br>
+	<% end %>
+	<br>
+
+	<label for="post_link">Links:</label>
+	<br>
+	<% @post.links.each_with_index do |link, index| %>
+	<label for="post_link_<%= index %>">URL</label>
+	<input type="text" id="post_link_<%= index %>" name="links[<%= index %>][url]"
+					placeholder="http://" value="<%= link.url %>">
+	<br>
+	<% end %>
+	<br>
+	<input type="submit" value="Create Post">
+</form>

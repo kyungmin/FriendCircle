@@ -1,0 +1,12 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+
+<h2>Links</h2>
+<% @post.links.each do |link| %>
+	<a href="http://<%= link.url %>" target="_blank"><%= link.url %></a><br>
+<% end %>
+
+<h2>Circles</h2>
+<% @post.circles.each do |circle| %>
+	<%= link_to circle.name, circle_url(circle) %><br>
+<% end %>

@@ -21,4 +21,9 @@ class Circle < ActiveRecord::Base
   :through => :circle_memberships,
   :source => :user
   )
+
+  has_many :post_shares
+
+  has_many :shared_posts, through: :post_shares, source: :post
+
 end

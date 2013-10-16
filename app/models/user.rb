@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   :dependent => :destroy
   )
 
+  has_many :posts
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
   end
